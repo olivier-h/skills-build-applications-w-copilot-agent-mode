@@ -1,17 +1,12 @@
 import mongoose from 'mongoose';
-
 const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
-
 async function connectToDatabase() {
-  if (mongoose.connection.readyState === 1) {
-    return mongoose.connection;
-  }
-
-  const connection = await mongoose.connect(connectionString);
-  console.log('Connected to octofit_db');
-  return connection;
+    if (mongoose.connection.readyState === 1) {
+        return mongoose.connection;
+    }
+    const connection = await mongoose.connect(connectionString);
+    console.log('Connected to octofit_db');
+    return connection;
 }
-
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
-
 export default connectToDatabase;
